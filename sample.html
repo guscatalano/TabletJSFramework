@@ -1,0 +1,27 @@
+<div id="mainmenu" class="mainmenu-pane">
+	<div class="mainbutton clickable">Item 1</div>
+	<div class="mainbutton clickable">Item 2</div>
+	<div class="mainbutton clickable">Item 3</div>
+</div>
+<div id="exploding-right" class="right-master">
+</div>
+
+<script src="UIFramework.js"></script>
+<script src="jquery-2.0.3.js"></script>
+<script>
+
+	function mainClick() {
+		$("#mainmenu").find("*").removeClass("selected-item");
+		$(this).addClass("selected-item");
+		destroyMap();
+		var panel = createInternalDiv();
+		panel.append("<span class='store-header'>Summary for " +
+		"</span><br/><br/>Average customers per day: 123<br/>Total customers today: 3<br/><div class='more-info heatmap-button clickable'>Heatmap</div><br/><div class='more-info barchart-button clickable'>Bar chart</div><br/><div class='more-info wide-button clickable'>Wide-view</div>");
+	
+	}
+
+	$(".mainbutton").click(mainClick); //Bind all the main buttons to our main function
+	
+		
+</script>
+<link rel="stylesheet" type="text/css" href="sample.css">
