@@ -1,13 +1,14 @@
 <div id="mainmenu" class="mainmenu-pane">
-	<div class="mainbutton clickable">Item 1</div>
-	<div class="mainbutton clickable">Item 2</div>
-	<div class="mainbutton clickable">Item 3</div>
+	<div id='id1' class="mainbutton clickable">Item 1</div>
+	<div id='id2' class="mainbutton clickable">Item 2</div>
+	<div id='id3' class="mainbutton clickable">Item 3</div>
 </div>
 <div id="exploding-right" class="right-master">
 </div>
 
-<script src="UIFramework.js"></script>
+
 <script src="jquery-2.0.3.js"></script>
+<script src="UIFramework.js"></script>
 <script>
 
 	function mainClick() {
@@ -20,8 +21,31 @@
 	
 	}
 
-	$(".mainbutton").click(mainClick); //Bind all the main buttons to our main function
+	//$(".mainbutton").click(mainClick); //Bind all the main buttons to our main function
+	//function MainMenu(name, element, rightPanel){
+	var x = new MainMenu("houses", $('#id1'), null);
+	var y = new MainMenu("cars", $('#id2'), null);
+	var z = new MainMenu("motorcycles", $('#id3'), null);
+	var rightPanelSample = new RightPanel("ANother one", null, null, function(panel, parameters){
+		$(panel).append("<div>Number of params passed: "+parameters.length + "</div>");
+		$(panel).append("<div>Param 0: "+parameters[0] + "</div>");
+	});
 	
+	x.rightPanel = new RightPanel("Yep", null, null, function(panel){
+		//Here we start populating
+		$(panel).append("see it works!");
+		var link = $("<div>Open me</div>");
+		var params = new Array();
+		params.push("numero uno");
+		params.push("numero dos");
+		var openLink = new PanelOpener(link, rightPanelSample, params);
+		$(panel).append(link);
+		this.panelOpeners.push(openLink);
+	});
+	//x.rightPanel.onCreate = 
+	y.rightPanel = new RightPanel("meh");
+	z.rightPanel = new RightPanel("AWESOME");
+	UIFramework.multipleSelect = false;
 		
 </script>
 <link rel="stylesheet" type="text/css" href="sample.css">
